@@ -41,11 +41,24 @@
             this.numericUpDownTwoBed = new System.Windows.Forms.NumericUpDown();
             this.buttonAddHotel = new System.Windows.Forms.Button();
             this.listBoxHotel = new System.Windows.Forms.ListBox();
+            this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabControlAdmin.SuspendLayout();
             this.tabPageHotels.SuspendLayout();
+            this.tabPageReserve.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOneBed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTwoBed)).BeginInit();
+            this.groupBoxReserve.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlAdmin
@@ -74,6 +87,8 @@
             // 
             // tabPageReserve
             // 
+            this.tabPageReserve.Controls.Add(this.listBox1);
+            this.tabPageReserve.Controls.Add(this.groupBoxReserve);
             this.tabPageReserve.Location = new System.Drawing.Point(4, 24);
             this.tabPageReserve.Name = "tabPageReserve";
             this.tabPageReserve.Padding = new System.Windows.Forms.Padding(3);
@@ -162,7 +177,7 @@
             this.buttonAddHotel.Name = "buttonAddHotel";
             this.buttonAddHotel.Size = new System.Drawing.Size(75, 23);
             this.buttonAddHotel.TabIndex = 7;
-            this.buttonAddHotel.Text = "button1";
+            this.buttonAddHotel.Text = "Hozzáadás";
             this.buttonAddHotel.UseVisualStyleBackColor = true;
             // 
             // listBoxHotel
@@ -174,6 +189,88 @@
             this.listBoxHotel.Size = new System.Drawing.Size(551, 379);
             this.listBoxHotel.TabIndex = 3;
             // 
+            // groupBoxReserve
+            // 
+            this.groupBoxReserve.Controls.Add(this.button1);
+            this.groupBoxReserve.Controls.Add(this.numericUpDown1);
+            this.groupBoxReserve.Controls.Add(this.numericUpDown2);
+            this.groupBoxReserve.Controls.Add(this.label3);
+            this.groupBoxReserve.Controls.Add(this.label4);
+            this.groupBoxReserve.Controls.Add(this.labelName);
+            this.groupBoxReserve.Controls.Add(this.textBox1);
+            this.groupBoxReserve.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxReserve.Name = "groupBoxReserve";
+            this.groupBoxReserve.Size = new System.Drawing.Size(199, 218);
+            this.groupBoxReserve.TabIndex = 3;
+            this.groupBoxReserve.TabStop = false;
+            this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(118, 187);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Foglalás";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(6, 148);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(177, 23);
+            this.numericUpDown1.TabIndex = 6;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(6, 90);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(177, 23);
+            this.numericUpDown2.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(0, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(134, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Egy ágyas szobák száma";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(134, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Egy ágyas szobák száma";
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(6, 19);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(28, 15);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "Név";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(177, 23);
+            this.textBox1.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(211, 6);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(551, 379);
+            this.listBox1.TabIndex = 4;
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -184,10 +281,15 @@
             this.Text = "Admin";
             this.tabControlAdmin.ResumeLayout(false);
             this.tabPageHotels.ResumeLayout(false);
+            this.tabPageReserve.ResumeLayout(false);
             this.groupBoxAdd.ResumeLayout(false);
             this.groupBoxAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOneBed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTwoBed)).EndInit();
+            this.groupBoxReserve.ResumeLayout(false);
+            this.groupBoxReserve.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -207,5 +309,14 @@
         private Label labelHotelOneBed;
         private Label labelHotelName;
         private TextBox textBoxHotelName;
+        private ListBox listBox1;
+        private GroupBox groupBoxReserve;
+        private Button button1;
+        private NumericUpDown numericUpDown1;
+        private NumericUpDown numericUpDown2;
+        private Label label3;
+        private Label label4;
+        private Label labelName;
+        private TextBox textBox1;
     }
 }
