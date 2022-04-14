@@ -40,8 +40,15 @@
             this.labelHotelName = new System.Windows.Forms.Label();
             this.textBoxHotelName = new System.Windows.Forms.TextBox();
             this.tabPageReserve = new System.Windows.Forms.TabPage();
+            this.groupBoxReserveDelete = new System.Windows.Forms.GroupBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.labelId = new System.Windows.Forms.Label();
+            this.textBoxId = new System.Windows.Forms.TextBox();
+            this.listBoxReserves = new System.Windows.Forms.ListBox();
             this.listBoxReserveHotel = new System.Windows.Forms.ListBox();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerReserveTo = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerReserveFrom = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -50,23 +57,16 @@
             this.labelName = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPageStat = new System.Windows.Forms.TabPage();
-            this.listBoxReserves = new System.Windows.Forms.ListBox();
-            this.groupBoxReserveDelete = new System.Windows.Forms.GroupBox();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.labelId = new System.Windows.Forms.Label();
-            this.textBoxId = new System.Windows.Forms.TextBox();
-            this.dateTimePickerReserveFrom = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerReserveTo = new System.Windows.Forms.DateTimePicker();
             this.tabControlAdmin.SuspendLayout();
             this.tabPageHotels.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTwoBed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOneBed)).BeginInit();
             this.tabPageReserve.SuspendLayout();
+            this.groupBoxReserveDelete.SuspendLayout();
             this.groupBoxReserve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            this.groupBoxReserveDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlAdmin
@@ -188,6 +188,52 @@
             this.tabPageReserve.Text = "Foglalás";
             this.tabPageReserve.UseVisualStyleBackColor = true;
             // 
+            // groupBoxReserveDelete
+            // 
+            this.groupBoxReserveDelete.Controls.Add(this.buttonDelete);
+            this.groupBoxReserveDelete.Controls.Add(this.labelId);
+            this.groupBoxReserveDelete.Controls.Add(this.textBoxId);
+            this.groupBoxReserveDelete.Location = new System.Drawing.Point(6, 295);
+            this.groupBoxReserveDelete.Name = "groupBoxReserveDelete";
+            this.groupBoxReserveDelete.Size = new System.Drawing.Size(199, 90);
+            this.groupBoxReserveDelete.TabIndex = 6;
+            this.groupBoxReserveDelete.TabStop = false;
+            this.groupBoxReserveDelete.Text = "Foglalás törlése";
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(118, 64);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelete.TabIndex = 7;
+            this.buttonDelete.Text = "Törlés";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            // 
+            // labelId
+            // 
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(6, 17);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(60, 15);
+            this.labelId.TabIndex = 1;
+            this.labelId.Text = "Azonosító";
+            // 
+            // textBoxId
+            // 
+            this.textBoxId.Location = new System.Drawing.Point(6, 35);
+            this.textBoxId.Name = "textBoxId";
+            this.textBoxId.Size = new System.Drawing.Size(177, 23);
+            this.textBoxId.TabIndex = 0;
+            // 
+            // listBoxReserves
+            // 
+            this.listBoxReserves.FormattingEnabled = true;
+            this.listBoxReserves.ItemHeight = 15;
+            this.listBoxReserves.Location = new System.Drawing.Point(493, 6);
+            this.listBoxReserves.Name = "listBoxReserves";
+            this.listBoxReserves.Size = new System.Drawing.Size(275, 379);
+            this.listBoxReserves.TabIndex = 5;
+            // 
             // listBoxReserveHotel
             // 
             this.listBoxReserveHotel.FormattingEnabled = true;
@@ -214,6 +260,20 @@
             this.groupBoxReserve.TabIndex = 3;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // dateTimePickerReserveTo
+            // 
+            this.dateTimePickerReserveTo.Location = new System.Drawing.Point(6, 216);
+            this.dateTimePickerReserveTo.Name = "dateTimePickerReserveTo";
+            this.dateTimePickerReserveTo.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveTo.TabIndex = 9;
+            // 
+            // dateTimePickerReserveFrom
+            // 
+            this.dateTimePickerReserveFrom.Location = new System.Drawing.Point(6, 187);
+            this.dateTimePickerReserveFrom.Name = "dateTimePickerReserveFrom";
+            this.dateTimePickerReserveFrom.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveFrom.TabIndex = 8;
             // 
             // button1
             // 
@@ -282,66 +342,6 @@
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
             // 
-            // listBoxReserves
-            // 
-            this.listBoxReserves.FormattingEnabled = true;
-            this.listBoxReserves.ItemHeight = 15;
-            this.listBoxReserves.Location = new System.Drawing.Point(493, 6);
-            this.listBoxReserves.Name = "listBoxReserves";
-            this.listBoxReserves.Size = new System.Drawing.Size(275, 379);
-            this.listBoxReserves.TabIndex = 5;
-            // 
-            // groupBoxReserveDelete
-            // 
-            this.groupBoxReserveDelete.Controls.Add(this.buttonDelete);
-            this.groupBoxReserveDelete.Controls.Add(this.labelId);
-            this.groupBoxReserveDelete.Controls.Add(this.textBoxId);
-            this.groupBoxReserveDelete.Location = new System.Drawing.Point(6, 295);
-            this.groupBoxReserveDelete.Name = "groupBoxReserveDelete";
-            this.groupBoxReserveDelete.Size = new System.Drawing.Size(199, 90);
-            this.groupBoxReserveDelete.TabIndex = 6;
-            this.groupBoxReserveDelete.TabStop = false;
-            this.groupBoxReserveDelete.Text = "Foglalás törlése";
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Location = new System.Drawing.Point(118, 64);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 7;
-            this.buttonDelete.Text = "Törlés";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            // 
-            // labelId
-            // 
-            this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(6, 17);
-            this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(60, 15);
-            this.labelId.TabIndex = 1;
-            this.labelId.Text = "Azonosító";
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.Location = new System.Drawing.Point(6, 35);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(177, 23);
-            this.textBoxId.TabIndex = 0;
-            // 
-            // dateTimePickerReserveFrom
-            // 
-            this.dateTimePickerReserveFrom.Location = new System.Drawing.Point(6, 187);
-            this.dateTimePickerReserveFrom.Name = "dateTimePickerReserveFrom";
-            this.dateTimePickerReserveFrom.Size = new System.Drawing.Size(184, 23);
-            this.dateTimePickerReserveFrom.TabIndex = 8;
-            // 
-            // dateTimePickerReserveTo
-            // 
-            this.dateTimePickerReserveTo.Location = new System.Drawing.Point(6, 216);
-            this.dateTimePickerReserveTo.Name = "dateTimePickerReserveTo";
-            this.dateTimePickerReserveTo.Size = new System.Drawing.Size(184, 23);
-            this.dateTimePickerReserveTo.TabIndex = 9;
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -357,12 +357,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTwoBed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOneBed)).EndInit();
             this.tabPageReserve.ResumeLayout(false);
+            this.groupBoxReserveDelete.ResumeLayout(false);
+            this.groupBoxReserveDelete.PerformLayout();
             this.groupBoxReserve.ResumeLayout(false);
             this.groupBoxReserve.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            this.groupBoxReserveDelete.ResumeLayout(false);
-            this.groupBoxReserveDelete.PerformLayout();
             this.ResumeLayout(false);
 
         }
