@@ -29,13 +29,6 @@ namespace Szallodafoglalas
                 MessageBox.Show("Nincs mód meghatározva a configuration.xml fájlban!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
                 Application.Run(form);
-
-            //Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\temp\hotel.mdf; Integrated Security=True; Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Model -Context Hotel
-
-
-
-//Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Temp\hotel.mdf;Integrated Security=True;Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -ContextDir AutoDir -Context Hotel
-
         }
     }
 }
