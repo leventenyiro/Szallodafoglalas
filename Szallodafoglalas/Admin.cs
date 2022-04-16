@@ -16,5 +16,11 @@ namespace Szallodafoglalas
         {
             InitializeComponent();
         }
+
+        private void buttonAddHotel_Click(object sender, EventArgs e)
+        {
+            // ha hozzáadunk egy elemet
+            
+        }
     }
 }
