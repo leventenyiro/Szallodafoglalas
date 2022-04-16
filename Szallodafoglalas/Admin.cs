@@ -42,6 +42,7 @@ namespace Szallodafoglalas
                 try
                 {
                     hotelDb.Add(new Hotel(textBoxHotelName.Text, (int)numericUpDownOneBed.Value, (int)numericUpDownTwoBed.Value));
+                    hotelDb.SaveChanges();
                 }
                 catch (Exception ex)
                 {
