@@ -24,10 +24,33 @@ namespace Szallodafoglalas
 
         private void RefreshListBoxHotel()
         {
-            listBoxHotel.Items.Clear();
+            listBoxReserveHotel.Items.Clear();
             foreach (var item in hotelDb.Hotels)
             {
                 listBoxHotel.Items.Add(item.ToString());
+            }
+        }
+
+        private void RefreshListBoxReserveHotel()
+        {
+            listBoxHotel.Items.Clear();
+            foreach (var item in hotelDb.Hotels)
+            {
+                listBoxReserveHotel.Items.Add(item.ToString()); // ez biztos jó? - hány hely van még
+                int freeOneBed = hotelDb.Hotels.Where(x =>
+                {
+                    /*
+                     *
+                     *  -- az 1-es hotelben hány 1-es ágy van lefoglalva 2022-04-19-én
+                            select hotel_id, count(bed)
+                            from reservation
+                            where bed = 1
+	                            and date="2022-04-19"
+                            group by hotel_id
+                            having hotel_id = 1
+                    */
+                })
+                listBoxReserveHotel.Items.Add($"{item.Name} - Ágyak száma erre a napra: (egyes: {}, kettes: {})")
             }
         }
 
@@ -58,5 +81,7 @@ namespace Szallodafoglalas
                 }
             }
         }
+
+
     }
 }

@@ -57,6 +57,8 @@
             this.listBoxReserves = new System.Windows.Forms.ListBox();
             this.listBoxReserveHotel = new System.Windows.Forms.ListBox();
             this.tabPageStat = new System.Windows.Forms.TabPage();
+            this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControlAdmin.SuspendLayout();
             this.tabPageHotels.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
@@ -65,6 +67,7 @@
             this.tabPageReserve.SuspendLayout();
             this.groupBoxReserve.SuspendLayout();
             this.groupBoxReserveDelete.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlAdmin
@@ -144,9 +147,9 @@
             this.labelHotelTwoBed.AutoSize = true;
             this.labelHotelTwoBed.Location = new System.Drawing.Point(0, 130);
             this.labelHotelTwoBed.Name = "labelHotelTwoBed";
-            this.labelHotelTwoBed.Size = new System.Drawing.Size(134, 15);
+            this.labelHotelTwoBed.Size = new System.Drawing.Size(132, 15);
             this.labelHotelTwoBed.TabIndex = 4;
-            this.labelHotelTwoBed.Text = "Egy ágyas szobák száma";
+            this.labelHotelTwoBed.Text = "Két ágyas szobák száma";
             // 
             // labelHotelOneBed
             // 
@@ -189,6 +192,8 @@
             // 
             // groupBoxReserve
             // 
+            this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
+            this.groupBoxReserve.Controls.Add(this.label4);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
             this.groupBoxReserve.Controls.Add(this.label3);
             this.groupBoxReserve.Controls.Add(this.textBoxEmail);
@@ -240,7 +245,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 181);
+            this.label1.Location = new System.Drawing.Point(9, 207);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(89, 15);
             this.label1.TabIndex = 9;
@@ -248,7 +253,7 @@
             // 
             // dateTimePickerReserveDate
             // 
-            this.dateTimePickerReserveDate.Location = new System.Drawing.Point(6, 199);
+            this.dateTimePickerReserveDate.Location = new System.Drawing.Point(6, 225);
             this.dateTimePickerReserveDate.Name = "dateTimePickerReserveDate";
             this.dateTimePickerReserveDate.Size = new System.Drawing.Size(184, 23);
             this.dateTimePickerReserveDate.TabIndex = 8;
@@ -343,6 +348,37 @@
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
             // 
+            // numericUpDownBed
+            // 
+            this.numericUpDownBed.Location = new System.Drawing.Point(6, 178);
+            this.numericUpDownBed.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDownBed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBed.Name = "numericUpDownBed";
+            this.numericUpDownBed.Size = new System.Drawing.Size(177, 23);
+            this.numericUpDownBed.TabIndex = 15;
+            this.numericUpDownBed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Ágyak száma";
+            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -362,6 +398,7 @@
             this.groupBoxReserve.PerformLayout();
             this.groupBoxReserveDelete.ResumeLayout(false);
             this.groupBoxReserveDelete.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -397,5 +434,7 @@
         private Button buttonReserve;
         private Label labelName;
         private TextBox textBoxReserveName;
+        private NumericUpDown numericUpDownBed;
+        private Label label4;
     }
 }
