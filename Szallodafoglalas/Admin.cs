@@ -31,26 +31,42 @@ namespace Szallodafoglalas
             }
         }
 
-        private void RefreshListBoxReserveHotel()
+        private void RefreshListBoxReserveHotel(DateTime date)
         {
             listBoxHotel.Items.Clear();
-            foreach (var item in hotelDb.Hotels)
+            /*foreach (var item in hotelDb.Hotels)
             {
                 listBoxReserveHotel.Items.Add(item.ToString()); // ez biztos jó? - hány hely van még
-                int freeOneBed = hotelDb.Hotels.Where(x =>
+                /*
+                    -- az 1-es hotelben hány 1-es ágy van lefoglalva 2022-04-19-én
+                    select id, name, onebed - (select count(*) from reservation where hotel_id = hotel.id and bed = 1 and date = "2022-04-19") as "freeOneBed",
+	                    twobed - (select count(*) from reservation where hotel_id = hotel.id and bed = 2 and date = "2022-04-19") as "freeTwoBed"
+                    from hotel
+                
+                // int oneBedReservation = hotelDb.Reservations.Where(x => x.Bed == 1 && x.HotelId == item.Id && x.Date == date).Count();
+                try
                 {
-                    /*
-                     *
-                     *  -- az 1-es hotelben hány 1-es ágy van lefoglalva 2022-04-19-én
-                            select hotel_id, count(bed)
-                            from reservation
-                            where bed = 1
-	                            and date="2022-04-19"
-                            group by hotel_id
-                            having hotel_id = 1
-                    */
-                })
-                listBoxReserveHotel.Items.Add($"{item.Name} - Ágyak száma erre a napra: (egyes: {}, kettes: {})")
+                    //List<Reservation> reservations = hotelDb.Reservations.ToList();
+                    //int oneBedReservation = reservations.Where(x => x.Bed == 1 && x.HotelId == item.Id && x.Date == date).Count();
+                    //int twoBedReservation = hotelDb.Reservations.Where(x => x.Bed == 2 && x.HotelId == item.Id).Count();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }*/
+
+            var hotelReservations = hotelDb.Hotels.Select(x => new {
+                x.Id,
+                x.Name,
+                freeOneBed = x.OneBed - hotelDb.Reservations.Where(y => y.Bed == 1 && y.HotelId == x.Id && y.Date == date).Count(),
+                freeTwoBed = x.TwoBed - hotelDb.Reservations.Where(y => y.Bed == 2 && y.HotelId == x.Id && y.Date == date).Count()
+            });
+
+            foreach (var item in hotelReservations)
+            {
+                listBoxReserveHotel.Items.Add($"{item.Name} - Ágyak száma erre a napra: (egyes: {item.freeOneBed}, kettes: {item.freeTwoBed})");
             }
         }
 
@@ -82,6 +98,9 @@ namespace Szallodafoglalas
             }
         }
 
-
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            RefreshListBoxReserveHotel(dateTimePickerReserveDate.Value);
+        }
     }
 }

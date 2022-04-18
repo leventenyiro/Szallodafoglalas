@@ -41,6 +41,8 @@
             this.textBoxHotelName = new System.Windows.Forms.TextBox();
             this.tabPageReserve = new System.Windows.Forms.TabPage();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
@@ -57,8 +59,7 @@
             this.listBoxReserves = new System.Windows.Forms.ListBox();
             this.listBoxReserveHotel = new System.Windows.Forms.ListBox();
             this.tabPageStat = new System.Windows.Forms.TabPage();
-            this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.tabControlAdmin.SuspendLayout();
             this.tabPageHotels.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
@@ -66,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownOneBed)).BeginInit();
             this.tabPageReserve.SuspendLayout();
             this.groupBoxReserve.SuspendLayout();
-            this.groupBoxReserveDelete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).BeginInit();
+            this.groupBoxReserveDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlAdmin
@@ -192,6 +193,7 @@
             // 
             // groupBoxReserve
             // 
+            this.groupBoxReserve.Controls.Add(this.buttonSearch);
             this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
             this.groupBoxReserve.Controls.Add(this.label4);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
@@ -209,6 +211,37 @@
             this.groupBoxReserve.TabIndex = 8;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // numericUpDownBed
+            // 
+            this.numericUpDownBed.Location = new System.Drawing.Point(6, 178);
+            this.numericUpDownBed.Maximum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numericUpDownBed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownBed.Name = "numericUpDownBed";
+            this.numericUpDownBed.Size = new System.Drawing.Size(177, 23);
+            this.numericUpDownBed.TabIndex = 15;
+            this.numericUpDownBed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 160);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Ágyak száma";
             // 
             // textBoxTel
             // 
@@ -348,36 +381,15 @@
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownBed
+            // buttonSearch
             // 
-            this.numericUpDownBed.Location = new System.Drawing.Point(6, 178);
-            this.numericUpDownBed.Maximum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numericUpDownBed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownBed.Name = "numericUpDownBed";
-            this.numericUpDownBed.Size = new System.Drawing.Size(177, 23);
-            this.numericUpDownBed.TabIndex = 15;
-            this.numericUpDownBed.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Ágyak száma";
+            this.buttonSearch.Location = new System.Drawing.Point(34, 254);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.Text = "Keresés";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // Admin
             // 
@@ -396,9 +408,9 @@
             this.tabPageReserve.ResumeLayout(false);
             this.groupBoxReserve.ResumeLayout(false);
             this.groupBoxReserve.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).EndInit();
             this.groupBoxReserveDelete.ResumeLayout(false);
             this.groupBoxReserveDelete.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -436,5 +448,6 @@
         private TextBox textBoxReserveName;
         private NumericUpDown numericUpDownBed;
         private Label label4;
+        private Button buttonSearch;
     }
 }
