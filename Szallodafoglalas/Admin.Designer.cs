@@ -41,7 +41,6 @@
             this.textBoxHotelName = new System.Windows.Forms.TextBox();
             this.tabPageReserve = new System.Windows.Forms.TabPage();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
@@ -79,7 +78,7 @@
             this.tabControlAdmin.Location = new System.Drawing.Point(12, 12);
             this.tabControlAdmin.Name = "tabControlAdmin";
             this.tabControlAdmin.SelectedIndex = 0;
-            this.tabControlAdmin.Size = new System.Drawing.Size(776, 426);
+            this.tabControlAdmin.Size = new System.Drawing.Size(999, 426);
             this.tabControlAdmin.TabIndex = 0;
             // 
             // tabPageHotels
@@ -89,7 +88,7 @@
             this.tabPageHotels.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotels.Name = "tabPageHotels";
             this.tabPageHotels.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHotels.Size = new System.Drawing.Size(768, 398);
+            this.tabPageHotels.Size = new System.Drawing.Size(991, 398);
             this.tabPageHotels.TabIndex = 0;
             this.tabPageHotels.Text = "Hotelek";
             this.tabPageHotels.UseVisualStyleBackColor = true;
@@ -101,7 +100,7 @@
             this.listBoxHotel.ItemHeight = 15;
             this.listBoxHotel.Location = new System.Drawing.Point(211, 6);
             this.listBoxHotel.Name = "listBoxHotel";
-            this.listBoxHotel.Size = new System.Drawing.Size(551, 379);
+            this.listBoxHotel.Size = new System.Drawing.Size(774, 379);
             this.listBoxHotel.TabIndex = 3;
             // 
             // groupBoxAdd
@@ -187,15 +186,13 @@
             this.tabPageReserve.Location = new System.Drawing.Point(4, 24);
             this.tabPageReserve.Name = "tabPageReserve";
             this.tabPageReserve.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageReserve.Size = new System.Drawing.Size(768, 398);
+            this.tabPageReserve.Size = new System.Drawing.Size(991, 398);
             this.tabPageReserve.TabIndex = 1;
             this.tabPageReserve.Text = "Foglalás";
             this.tabPageReserve.UseVisualStyleBackColor = true;
-            this.tabPageReserve.Click += new System.EventHandler(this.tabPageReserve_Click);
             // 
             // groupBoxReserve
             // 
-            this.groupBoxReserve.Controls.Add(this.buttonSearch);
             this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
             this.groupBoxReserve.Controls.Add(this.label4);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
@@ -213,16 +210,6 @@
             this.groupBoxReserve.TabIndex = 8;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(34, 254);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 16;
-            this.buttonSearch.Text = "Keresés";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // numericUpDownBed
             // 
@@ -302,10 +289,10 @@
             this.dateTimePickerReserveDate.Name = "dateTimePickerReserveDate";
             this.dateTimePickerReserveDate.Size = new System.Drawing.Size(184, 23);
             this.dateTimePickerReserveDate.TabIndex = 8;
+            this.dateTimePickerReserveDate.ValueChanged += new System.EventHandler(this.dateTimePickerReserveDate_ValueChanged);
             // 
             // buttonReserve
             // 
-            this.buttonReserve.Enabled = false;
             this.buttonReserve.Location = new System.Drawing.Point(115, 254);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(75, 23);
@@ -371,9 +358,9 @@
             // 
             this.listBoxReservation.FormattingEnabled = true;
             this.listBoxReservation.ItemHeight = 15;
-            this.listBoxReservation.Location = new System.Drawing.Point(493, 6);
+            this.listBoxReservation.Location = new System.Drawing.Point(522, 6);
             this.listBoxReservation.Name = "listBoxReservation";
-            this.listBoxReservation.Size = new System.Drawing.Size(275, 379);
+            this.listBoxReservation.Size = new System.Drawing.Size(463, 379);
             this.listBoxReservation.TabIndex = 5;
             // 
             // listBoxReservationHotel
@@ -382,7 +369,7 @@
             this.listBoxReservationHotel.ItemHeight = 15;
             this.listBoxReservationHotel.Location = new System.Drawing.Point(211, 6);
             this.listBoxReservationHotel.Name = "listBoxReservationHotel";
-            this.listBoxReservationHotel.Size = new System.Drawing.Size(275, 379);
+            this.listBoxReservationHotel.Size = new System.Drawing.Size(305, 379);
             this.listBoxReservationHotel.TabIndex = 4;
             this.listBoxReservationHotel.SelectedIndexChanged += new System.EventHandler(this.listBoxReservationHotel_SelectedIndexChanged);
             // 
@@ -391,7 +378,7 @@
             this.tabPageStat.Location = new System.Drawing.Point(4, 24);
             this.tabPageStat.Name = "tabPageStat";
             this.tabPageStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStat.Size = new System.Drawing.Size(768, 398);
+            this.tabPageStat.Size = new System.Drawing.Size(991, 398);
             this.tabPageStat.TabIndex = 2;
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
@@ -400,7 +387,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1023, 450);
             this.Controls.Add(this.tabControlAdmin);
             this.Name = "Admin";
             this.Text = "Admin";
@@ -453,6 +440,5 @@
         private TextBox textBoxReserveName;
         private NumericUpDown numericUpDownBed;
         private Label label4;
-        private Button buttonSearch;
     }
 }

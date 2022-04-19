@@ -20,68 +20,49 @@ namespace Szallodafoglalas
             InitializeComponent();
             hotelDb = new HotelDb();
             RefreshListBoxHotel();
+            RefreshListBoxReservationHotel();
         }
 
         private void RefreshListBoxHotel()
         {
-            listBoxReservationHotel.Items.Clear();
+            listBoxHotel.Items.Clear();
+
             foreach (var item in hotelDb.Hotels)
             {
                 listBoxHotel.Items.Add(item.ToString());
             }
         }
 
-        private void RefreshListBoxReserveHotel(DateTime date)
+        private void RefreshListBoxReservationHotel()
         {
-            listBoxHotel.Items.Clear();
-            /*foreach (var item in hotelDb.Hotels)
+            listBoxReservationHotel.Items.Clear();
+
+            var hotelReservations = hotelDb.Hotels.Select(x => new
             {
-                listBoxReserveHotel.Items.Add(item.ToString()); // ez biztos jó? - hány hely van még
-                /*
-                    -- az 1-es hotelben hány 1-es ágy van lefoglalva 2022-04-19-én
-                    select id, name, onebed - (select count(*) from reservation where hotel_id = hotel.id and bed = 1 and date = "2022-04-19") as "freeOneBed",
-	                    twobed - (select count(*) from reservation where hotel_id = hotel.id and bed = 2 and date = "2022-04-19") as "freeTwoBed"
-                    from hotel
-                
-                // int oneBedReservation = hotelDb.Reservations.Where(x => x.Bed == 1 && x.HotelId == item.Id && x.Date == date).Count();
-                try
-                {
-                    //List<Reservation> reservations = hotelDb.Reservations.ToList();
-                    //int oneBedReservation = reservations.Where(x => x.Bed == 1 && x.HotelId == item.Id && x.Date == date).Count();
-                    //int twoBedReservation = hotelDb.Reservations.Where(x => x.Bed == 2 && x.HotelId == item.Id).Count();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-            }*/
-
-            var hotelReservations = hotelDb.Hotels.Select(x => new {
                 x.Id,
                 x.Name,
                 x.OneBed,
-                ReservedOneBed = hotelDb.Reservations.Where(y => y.Bed == 1 && y.HotelId == x.Id && y.Date == date).Count(),
+                ReservedOneBed = hotelDb.Reservations.Where(y => y.Bed == 1 && y.HotelId == x.Id && y.Date == dateTimePickerReserveDate.Value).Count(),
                 x.TwoBed,
-                ReservedTwoBed = hotelDb.Reservations.Where(y => y.Bed == 2 && y.HotelId == x.Id && y.Date == date).Count()
+                ReservedTwoBed = hotelDb.Reservations.Where(y => y.Bed == 2 && y.HotelId == x.Id && y.Date == dateTimePickerReserveDate.Value).Count()
             });
 
             foreach (var item in hotelReservations)
             {
                 listBoxReservationHotel.Items.Add($"{item.Name} - (egy ágy: {item.ReservedOneBed} / {item.OneBed}, két ágy: {item.ReservedTwoBed} / {item.TwoBed})");
             }
-
-            if (listBoxReservationHotel.Items.Count == 0)
-                MessageBox.Show("Erre a napra nincs szabad szállás!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void RefreshListBoxReservation()
         {
-            //var reservations = hotelDb.Reservations.Select(x => new { x.Id, Hotel = hotelDb.Hotels.Where(y => y.Id == x.HotelId).Select(y => y.Name) });
-            var reservations = hotelDb.Reservations.Join(hotelDb.Hotels, a => a.HotelId, b => b.Id, (a, b) => new {a, b}).ToList();
-            foreach (var item in reservations)
+            listBoxReservation.Items.Clear();
+
+            var reservationInHotel = hotelDb.Reservations
+                .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxReservationHotel.SelectedIndex].Id);
+            var hotelName = hotelDb.Hotels.ToArray()[listBoxReservationHotel.SelectedIndex].Name;
+            foreach (var item in reservationInHotel)
             {
-                listBoxReservation.Items.Add($"{item.a.Id} - {item.b.Name} - {item.a.Bed} - ");
+                listBoxReservation.Items.Add($"{item.Id} - {hotelName}({item.Bed}) ({item.Date.ToString("yyyy-MM-dd")}) - ({item.Name} - {item.Email} - {item.Tel}");
             }
         }
 
@@ -118,34 +99,48 @@ namespace Szallodafoglalas
             }
         }
 
-        private void tabPageReserve_Click(object sender, EventArgs e)
+        /*private void tabPageReserve_Click(object sender, EventArgs e)
         {
-            RefreshListBoxReservation();
-        }
-
-        private void buttonSearch_Click(object sender, EventArgs e)
+            RefreshListBoxReservationHotel();
+        }*/
+        private void dateTimePickerReserveDate_ValueChanged(object sender, EventArgs e)
         {
-            RefreshListBoxReserveHotel(dateTimePickerReserveDate.Value);
-            //buttonReserve.Enabled = true;
+            RefreshListBoxReservationHotel();
         }
 
         private void listBoxReservationHotel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var reservationInHotel = hotelDb.Reservations
-                .Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Id);
-            var hotelName = hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Name;
-            foreach (var item in reservationInHotel)
-            {
-                listBoxReservation.Items.Add($"{item.Id} - {hotelName}({item.Bed}) ({item.Date}) - ({item.Name} - {item.Email} - {item.Tel}");
-            }
+            RefreshListBoxReservation();
         }
 
         private void buttonReserve_Click(object sender, EventArgs e)
         {
             if (textBoxReserveName.Text == "" || textBoxEmail.Text == "" || textBoxTel.Text == "")
                 MessageBox.Show("Valami nincs kitöltve!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            
-            // szabad hely csekkolása
+            else if (listBoxReservationHotel.SelectedIndex == -1)
+                MessageBox.Show("Nincs kiválasztva hotel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                var freeRoomInHotel = hotelDb.Reservations
+                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Id && x.Date == dateTimePickerReserveDate.Value).Count();
+
+                var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Id)
+                    .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
+                if (freeRoomInHotel == roomInHotel)
+                    MessageBox.Show("Nincs szabad hely a megadott paraméterekkel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                {
+                    hotelDb.Reservations.Add(new Reservation(hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Id,
+                        (int)numericUpDownBed.Value, textBoxReserveName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDate.Value));
+                    hotelDb.SaveChanges();
+                    numericUpDownBed.Value = 1;
+                    textBoxReserveName.Text = "";
+                    textBoxEmail.Text = "";
+                    textBoxTel.Text = "";
+                    RefreshListBoxReservationHotel();
+                    RefreshListBoxReservation();
+                }
+            }
 
         }
     }
