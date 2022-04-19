@@ -41,6 +41,7 @@
             this.textBoxHotelName = new System.Windows.Forms.TextBox();
             this.tabPageReserve = new System.Windows.Forms.TabPage();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
@@ -56,10 +57,9 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.labelId = new System.Windows.Forms.Label();
             this.textBoxId = new System.Windows.Forms.TextBox();
-            this.listBoxReserves = new System.Windows.Forms.ListBox();
-            this.listBoxReserveHotel = new System.Windows.Forms.ListBox();
+            this.listBoxReservation = new System.Windows.Forms.ListBox();
+            this.listBoxReservationHotel = new System.Windows.Forms.ListBox();
             this.tabPageStat = new System.Windows.Forms.TabPage();
-            this.buttonSearch = new System.Windows.Forms.Button();
             this.tabControlAdmin.SuspendLayout();
             this.tabPageHotels.SuspendLayout();
             this.groupBoxAdd.SuspendLayout();
@@ -93,6 +93,7 @@
             this.tabPageHotels.TabIndex = 0;
             this.tabPageHotels.Text = "Hotelek";
             this.tabPageHotels.UseVisualStyleBackColor = true;
+            this.tabPageHotels.Click += new System.EventHandler(this.tabPageHotels_Click);
             // 
             // listBoxHotel
             // 
@@ -181,8 +182,8 @@
             // 
             this.tabPageReserve.Controls.Add(this.groupBoxReserve);
             this.tabPageReserve.Controls.Add(this.groupBoxReserveDelete);
-            this.tabPageReserve.Controls.Add(this.listBoxReserves);
-            this.tabPageReserve.Controls.Add(this.listBoxReserveHotel);
+            this.tabPageReserve.Controls.Add(this.listBoxReservation);
+            this.tabPageReserve.Controls.Add(this.listBoxReservationHotel);
             this.tabPageReserve.Location = new System.Drawing.Point(4, 24);
             this.tabPageReserve.Name = "tabPageReserve";
             this.tabPageReserve.Padding = new System.Windows.Forms.Padding(3);
@@ -190,6 +191,7 @@
             this.tabPageReserve.TabIndex = 1;
             this.tabPageReserve.Text = "Foglalás";
             this.tabPageReserve.UseVisualStyleBackColor = true;
+            this.tabPageReserve.Click += new System.EventHandler(this.tabPageReserve_Click);
             // 
             // groupBoxReserve
             // 
@@ -211,6 +213,16 @@
             this.groupBoxReserve.TabIndex = 8;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(34, 254);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSearch.TabIndex = 16;
+            this.buttonSearch.Text = "Keresés";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // numericUpDownBed
             // 
@@ -293,12 +305,14 @@
             // 
             // buttonReserve
             // 
+            this.buttonReserve.Enabled = false;
             this.buttonReserve.Location = new System.Drawing.Point(115, 254);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(75, 23);
             this.buttonReserve.TabIndex = 7;
             this.buttonReserve.Text = "Foglalás";
             this.buttonReserve.UseVisualStyleBackColor = true;
+            this.buttonReserve.Click += new System.EventHandler(this.buttonReserve_Click);
             // 
             // labelName
             // 
@@ -353,23 +367,24 @@
             this.textBoxId.Size = new System.Drawing.Size(177, 23);
             this.textBoxId.TabIndex = 0;
             // 
-            // listBoxReserves
+            // listBoxReservation
             // 
-            this.listBoxReserves.FormattingEnabled = true;
-            this.listBoxReserves.ItemHeight = 15;
-            this.listBoxReserves.Location = new System.Drawing.Point(493, 6);
-            this.listBoxReserves.Name = "listBoxReserves";
-            this.listBoxReserves.Size = new System.Drawing.Size(275, 379);
-            this.listBoxReserves.TabIndex = 5;
+            this.listBoxReservation.FormattingEnabled = true;
+            this.listBoxReservation.ItemHeight = 15;
+            this.listBoxReservation.Location = new System.Drawing.Point(493, 6);
+            this.listBoxReservation.Name = "listBoxReservation";
+            this.listBoxReservation.Size = new System.Drawing.Size(275, 379);
+            this.listBoxReservation.TabIndex = 5;
             // 
-            // listBoxReserveHotel
+            // listBoxReservationHotel
             // 
-            this.listBoxReserveHotel.FormattingEnabled = true;
-            this.listBoxReserveHotel.ItemHeight = 15;
-            this.listBoxReserveHotel.Location = new System.Drawing.Point(211, 6);
-            this.listBoxReserveHotel.Name = "listBoxReserveHotel";
-            this.listBoxReserveHotel.Size = new System.Drawing.Size(275, 379);
-            this.listBoxReserveHotel.TabIndex = 4;
+            this.listBoxReservationHotel.FormattingEnabled = true;
+            this.listBoxReservationHotel.ItemHeight = 15;
+            this.listBoxReservationHotel.Location = new System.Drawing.Point(211, 6);
+            this.listBoxReservationHotel.Name = "listBoxReservationHotel";
+            this.listBoxReservationHotel.Size = new System.Drawing.Size(275, 379);
+            this.listBoxReservationHotel.TabIndex = 4;
+            this.listBoxReservationHotel.SelectedIndexChanged += new System.EventHandler(this.listBoxReservationHotel_SelectedIndexChanged);
             // 
             // tabPageStat
             // 
@@ -380,16 +395,6 @@
             this.tabPageStat.TabIndex = 2;
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
-            // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(34, 254);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(75, 23);
-            this.buttonSearch.TabIndex = 16;
-            this.buttonSearch.Text = "Keresés";
-            this.buttonSearch.UseVisualStyleBackColor = true;
-            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
             // Admin
             // 
@@ -430,12 +435,12 @@
         private Label labelHotelOneBed;
         private Label labelHotelName;
         private TextBox textBoxHotelName;
-        private ListBox listBoxReserveHotel;
+        private ListBox listBoxReservationHotel;
         private GroupBox groupBoxReserveDelete;
         private Button buttonDelete;
         private Label labelId;
         private TextBox textBoxId;
-        private ListBox listBoxReserves;
+        private ListBox listBoxReservation;
         private GroupBox groupBoxReserve;
         private TextBox textBoxTel;
         private Label label3;
