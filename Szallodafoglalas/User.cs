@@ -16,5 +16,11 @@ namespace Szallodafoglalas
         {
             InitializeComponent();
         }
+
+        /*
+         * szállodák listája - kiválasztás - foglalás (ha lehet)
+         * foglalási azonosító megjelenik a messageboxban
+         *  ennek megadásával lehet lekérdezni illetve törölni a foglalást
+         */
     }
 }
