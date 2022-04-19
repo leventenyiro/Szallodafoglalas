@@ -1,24 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Szallodafoglalas.Services;
 
 namespace Szallodafoglalas.Models
 {
-    internal class Hotel
+    public partial class Hotel
     {
-        public string Id { get; }
-        public string Name { get; }
-        public int OneBed { get; }
-        public int TwoBed { get; }
+        public string Id { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public int OneBed { get; set; }
+        public int TwoBed { get; set; }
 
-        public Hotel(string id, string name, int oneBed, int twoBed)
+        public Hotel(string name, int oneBed, int twoBed)
         {
-            Id = id;
+            Id = IdGenerator.generate(6);
             Name = name;
             OneBed = oneBed;
             TwoBed = twoBed;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} - {Name} - Beds: (one: {OneBed}, two: {TwoBed})";
         }
     }
 }

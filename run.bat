@@ -1,0 +1,1 @@
+Scaffold-DbContext "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Temp\hotel.mdf;Integrated Security=True;Connect Timeout=30" Microsoft.EntityFrameworkCore.SqlServer -ContextDir AutoDir -Context Hotel
