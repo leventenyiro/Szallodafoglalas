@@ -5,10 +5,10 @@ using Szallodafoglalas.Models;
 
 namespace Szallodafoglalas
 {
-    public partial class Admin : Form
+    public partial class AdminForm : Form
     {
         private HotelDb hotelDb;
-        public Admin()
+        public AdminForm()
         {
             InitializeComponent();
             hotelDb = new HotelDb();

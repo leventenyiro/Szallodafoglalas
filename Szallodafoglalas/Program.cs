@@ -21,9 +21,9 @@ namespace Szallodafoglalas
 
             Form? form = null;
             if (mode == "admin")
-                form = new Admin();
+                form = new AdminForm();
             else if (mode == "user")
-                form = new User();
+                form = new UserForm();
 
             if (form == null)
                 MessageBox.Show("Nincs mód meghatározva a configuration.xml fájlban!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);

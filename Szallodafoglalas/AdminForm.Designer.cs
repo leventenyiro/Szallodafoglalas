@@ -1,6 +1,6 @@
 ﻿namespace Szallodafoglalas
 {
-    partial class Admin
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.
