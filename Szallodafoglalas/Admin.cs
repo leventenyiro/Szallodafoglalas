@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Szallodafoglalas.AutoDir;
@@ -21,6 +22,7 @@ namespace Szallodafoglalas
             hotelDb = new HotelDb();
             RefreshListBoxHotel();
             RefreshListBoxReservationHotel();
+            dateTimePickerReserveDate.MinDate = DateTime.Now.AddDays(1);
         }
 
         private void RefreshListBoxHotel()
@@ -55,11 +57,12 @@ namespace Szallodafoglalas
 
         private void RefreshListBoxReservation()
         {
-            listBoxReservation.Items.Clear();
-
             var reservationInHotel = hotelDb.Reservations
                 .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxReservationHotel.SelectedIndex].Id);
-            var hotelName = hotelDb.Hotels.ToArray()[listBoxReservationHotel.SelectedIndex].Name;
+            var hotelName = hotelDb.Hotels.ToList()[listBoxReservationHotel.SelectedIndex].Name;
+
+            listBoxReservation.Items.Clear();
+
             foreach (var item in reservationInHotel)
             {
                 listBoxReservation.Items.Add($"{item.Id} - {hotelName}({item.Bed}) ({item.Date.ToString("yyyy-MM-dd")}) - ({item.Name} - {item.Email} - {item.Tel}");
@@ -119,6 +122,10 @@ namespace Szallodafoglalas
                 MessageBox.Show("Valami nincs kitöltve!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (listBoxReservationHotel.SelectedIndex == -1)
                 MessageBox.Show("Nincs kiválasztva hotel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (!new Regex(@"^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]+@[a-zA-Z0-9-]+(?:\. [a-zA-Z0-9-]+)*$").IsMatch(textBoxEmail.Text))
+                MessageBox.Show("Helytelen e-mail cím!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (!new Regex(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$").IsMatch(textBoxTel.Text))
+                MessageBox.Show("Helytelen telefonszám!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
                 var freeRoomInHotel = hotelDb.Reservations
@@ -137,11 +144,23 @@ namespace Szallodafoglalas
                     textBoxReserveName.Text = "";
                     textBoxEmail.Text = "";
                     textBoxTel.Text = "";
-                    RefreshListBoxReservationHotel();
                     RefreshListBoxReservation();
+                    RefreshListBoxReservationHotel();
                 }
             }
+        }
 
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (textBoxId.Text == "")
+                MessageBox.Show("Nincs megadva azonosító!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+            {
+                try
+                {
+
+                }
+            }
         }
     }
 }

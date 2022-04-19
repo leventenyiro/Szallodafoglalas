@@ -246,6 +246,7 @@
             // 
             this.textBoxTel.Location = new System.Drawing.Point(6, 125);
             this.textBoxTel.Name = "textBoxTel";
+            this.textBoxTel.PlaceholderText = "+36701234567";
             this.textBoxTel.Size = new System.Drawing.Size(177, 23);
             this.textBoxTel.TabIndex = 13;
             // 
@@ -285,6 +286,8 @@
             // 
             // dateTimePickerReserveDate
             // 
+            this.dateTimePickerReserveDate.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerReserveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerReserveDate.Location = new System.Drawing.Point(6, 225);
             this.dateTimePickerReserveDate.Name = "dateTimePickerReserveDate";
             this.dateTimePickerReserveDate.Size = new System.Drawing.Size(184, 23);
@@ -337,6 +340,7 @@
             this.buttonDelete.TabIndex = 7;
             this.buttonDelete.Text = "Törlés";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // labelId
             // 
