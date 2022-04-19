@@ -22,7 +22,7 @@ namespace Szallodafoglalas
             hotelDb = new HotelDb();
             this.reservation = reservation;
 
-            var hotelName = hotelDb.Hotels.Where(x => x.Id == reservation.HotelId).Select(x => x.Name);
+            var hotelName = hotelDb.Hotels.Where(x => x.Id == reservation.HotelId).Select(x => x.Name).First();
             labelReservationDetails.Text = $"{reservation.Id} - {hotelName}, ágyak száma: {reservation.Bed}\n" +
                 $"{reservation.Date} - {reservation.Name}\n{reservation.Email}, {reservation.Tel}";
         }
@@ -38,10 +38,10 @@ namespace Szallodafoglalas
             {
                 hotelDb.Reservations.Remove(reservation);
                 hotelDb.SaveChanges();
+                Close();
             }
             else
                 MessageBox.Show("24 órán belüli foglalást már nem lehet törölni!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Close();
         }
     }
 }

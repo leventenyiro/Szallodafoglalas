@@ -36,16 +36,16 @@
             // labelReservationDetails
             // 
             this.labelReservationDetails.AutoSize = true;
-            this.labelReservationDetails.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelReservationDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelReservationDetails.Location = new System.Drawing.Point(12, 20);
             this.labelReservationDetails.Name = "labelReservationDetails";
-            this.labelReservationDetails.Size = new System.Drawing.Size(207, 25);
+            this.labelReservationDetails.Size = new System.Drawing.Size(128, 15);
             this.labelReservationDetails.TabIndex = 0;
             this.labelReservationDetails.Text = "labelReservationDetails";
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(44, 152);
+            this.buttonBack.Location = new System.Drawing.Point(55, 155);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(75, 23);
             this.buttonBack.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(183, 152);
+            this.buttonDelete.Location = new System.Drawing.Point(226, 155);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 2;
@@ -67,11 +67,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 190);
+            this.ClientSize = new System.Drawing.Size(351, 190);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.labelReservationDetails);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ReservationForm";
+            this.ShowIcon = false;
             this.Text = "Reservation";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -233,7 +233,10 @@
             this.Controls.Add(this.groupBoxReserve);
             this.Controls.Add(this.groupBoxReserveDelete);
             this.Controls.Add(this.listBoxHotel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "UserForm";
+            this.ShowIcon = false;
             this.Text = "User";
             this.groupBoxReserveDelete.ResumeLayout(false);
             this.groupBoxReserveDelete.PerformLayout();
