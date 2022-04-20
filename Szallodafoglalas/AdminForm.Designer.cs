@@ -282,6 +282,7 @@
             this.buttonAddHotel.TabIndex = 7;
             this.buttonAddHotel.Text = "Hozzáadás";
             this.buttonAddHotel.UseVisualStyleBackColor = true;
+            this.buttonAddHotel.Click += new System.EventHandler(this.buttonAddHotel_Click);
             // 
             // numericUpDownTwoBed
             // 
@@ -360,7 +361,7 @@
             this.tabControlAdmin.Size = new System.Drawing.Size(1214, 426);
             this.tabControlAdmin.TabIndex = 0;
             // 
-            // Admin
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -368,7 +369,7 @@
             this.Controls.Add(this.tabControlAdmin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Admin";
+            this.Name = "AdminForm";
             this.ShowIcon = false;
             this.Text = "Admin";
             this.tabPageHotel.ResumeLayout(false);
