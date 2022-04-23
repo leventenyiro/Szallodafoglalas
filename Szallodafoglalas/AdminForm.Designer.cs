@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.tabPageStat = new System.Windows.Forms.TabPage();
+            this.buttonStat = new System.Windows.Forms.Button();
+            this.comboBoxStatHotel = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dateTimePickerStatTo = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePickerStatFrom = new System.Windows.Forms.DateTimePicker();
             this.tabPageHotel = new System.Windows.Forms.TabPage();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
@@ -57,6 +63,8 @@
             this.listBoxReservation = new System.Windows.Forms.ListBox();
             this.listBoxHotel = new System.Windows.Forms.ListBox();
             this.tabControlAdmin = new System.Windows.Forms.TabControl();
+            this.plotViewStat = new OxyPlot.WindowsForms.PlotView();
+            this.tabPageStat.SuspendLayout();
             this.tabPageHotel.SuspendLayout();
             this.groupBoxReserve.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBed)).BeginInit();
@@ -69,6 +77,13 @@
             // 
             // tabPageStat
             // 
+            this.tabPageStat.Controls.Add(this.plotViewStat);
+            this.tabPageStat.Controls.Add(this.buttonStat);
+            this.tabPageStat.Controls.Add(this.comboBoxStatHotel);
+            this.tabPageStat.Controls.Add(this.label6);
+            this.tabPageStat.Controls.Add(this.dateTimePickerStatTo);
+            this.tabPageStat.Controls.Add(this.label5);
+            this.tabPageStat.Controls.Add(this.dateTimePickerStatFrom);
             this.tabPageStat.Location = new System.Drawing.Point(4, 24);
             this.tabPageStat.Name = "tabPageStat";
             this.tabPageStat.Padding = new System.Windows.Forms.Padding(3);
@@ -76,6 +91,61 @@
             this.tabPageStat.TabIndex = 2;
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
+            // 
+            // buttonStat
+            // 
+            this.buttonStat.Location = new System.Drawing.Point(112, 143);
+            this.buttonStat.Name = "buttonStat";
+            this.buttonStat.Size = new System.Drawing.Size(75, 23);
+            this.buttonStat.TabIndex = 15;
+            this.buttonStat.Text = "Statisztika";
+            this.buttonStat.UseVisualStyleBackColor = true;
+            this.buttonStat.Click += new System.EventHandler(this.buttonStat_Click);
+            // 
+            // comboBoxStatHotel
+            // 
+            this.comboBoxStatHotel.FormattingEnabled = true;
+            this.comboBoxStatHotel.Location = new System.Drawing.Point(3, 103);
+            this.comboBoxStatHotel.Name = "comboBoxStatHotel";
+            this.comboBoxStatHotel.Size = new System.Drawing.Size(184, 23);
+            this.comboBoxStatHotel.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 85);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 15);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Hotel";
+            // 
+            // dateTimePickerStatTo
+            // 
+            this.dateTimePickerStatTo.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerStatTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerStatTo.Location = new System.Drawing.Point(3, 50);
+            this.dateTimePickerStatTo.Name = "dateTimePickerStatTo";
+            this.dateTimePickerStatTo.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerStatTo.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 15);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Intervallum";
+            // 
+            // dateTimePickerStatFrom
+            // 
+            this.dateTimePickerStatFrom.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerStatFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerStatFrom.Location = new System.Drawing.Point(3, 21);
+            this.dateTimePickerStatFrom.Name = "dateTimePickerStatFrom";
+            this.dateTimePickerStatFrom.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerStatFrom.TabIndex = 10;
+            this.dateTimePickerStatFrom.ValueChanged += new System.EventHandler(this.dateTimePickerStatFrom_ValueChanged);
             // 
             // tabPageHotel
             // 
@@ -361,6 +431,18 @@
             this.tabControlAdmin.Size = new System.Drawing.Size(1214, 426);
             this.tabControlAdmin.TabIndex = 0;
             // 
+            // plotViewStat
+            // 
+            this.plotViewStat.Location = new System.Drawing.Point(193, 6);
+            this.plotViewStat.Name = "plotViewStat";
+            this.plotViewStat.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.plotViewStat.Size = new System.Drawing.Size(1007, 385);
+            this.plotViewStat.TabIndex = 16;
+            this.plotViewStat.Text = "plotView1";
+            this.plotViewStat.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.plotViewStat.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.plotViewStat.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -372,6 +454,8 @@
             this.Name = "AdminForm";
             this.ShowIcon = false;
             this.Text = "Admin";
+            this.tabPageStat.ResumeLayout(false);
+            this.tabPageStat.PerformLayout();
             this.tabPageHotel.ResumeLayout(false);
             this.groupBoxReserve.ResumeLayout(false);
             this.groupBoxReserve.PerformLayout();
@@ -418,5 +502,12 @@
         private ListBox listBoxReservation;
         private ListBox listBoxHotel;
         private TabControl tabControlAdmin;
+        private Button buttonStat;
+        private ComboBox comboBoxStatHotel;
+        private Label label6;
+        private DateTimePicker dateTimePickerStatTo;
+        private Label label5;
+        private DateTimePicker dateTimePickerStatFrom;
+        private OxyPlot.WindowsForms.PlotView plotViewStat;
     }
 }
