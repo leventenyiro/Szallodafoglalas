@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tabPageStat = new System.Windows.Forms.TabPage();
+            this.plotViewStat = new OxyPlot.WindowsForms.PlotView();
             this.buttonStat = new System.Windows.Forms.Button();
             this.comboBoxStatHotel = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -37,6 +38,8 @@
             this.dateTimePickerStatFrom = new System.Windows.Forms.DateTimePicker();
             this.tabPageHotel = new System.Windows.Forms.TabPage();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePickerReserveDateTo = new System.Windows.Forms.DateTimePicker();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
@@ -44,7 +47,7 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePickerReserveDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerReserveDateFrom = new System.Windows.Forms.DateTimePicker();
             this.buttonReserve = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxReserveName = new System.Windows.Forms.TextBox();
@@ -63,7 +66,6 @@
             this.listBoxReservation = new System.Windows.Forms.ListBox();
             this.listBoxHotel = new System.Windows.Forms.ListBox();
             this.tabControlAdmin = new System.Windows.Forms.TabControl();
-            this.plotViewStat = new OxyPlot.WindowsForms.PlotView();
             this.tabPageStat.SuspendLayout();
             this.tabPageHotel.SuspendLayout();
             this.groupBoxReserve.SuspendLayout();
@@ -91,6 +93,18 @@
             this.tabPageStat.TabIndex = 2;
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
+            // 
+            // plotViewStat
+            // 
+            this.plotViewStat.Location = new System.Drawing.Point(193, 6);
+            this.plotViewStat.Name = "plotViewStat";
+            this.plotViewStat.PanCursor = System.Windows.Forms.Cursors.Hand;
+            this.plotViewStat.Size = new System.Drawing.Size(1007, 385);
+            this.plotViewStat.TabIndex = 16;
+            this.plotViewStat.Text = "plotView1";
+            this.plotViewStat.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
+            this.plotViewStat.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.plotViewStat.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
             // buttonStat
             // 
@@ -127,6 +141,7 @@
             this.dateTimePickerStatTo.Name = "dateTimePickerStatTo";
             this.dateTimePickerStatTo.Size = new System.Drawing.Size(184, 23);
             this.dateTimePickerStatTo.TabIndex = 12;
+            this.dateTimePickerStatTo.ValueChanged += new System.EventHandler(this.dateTimePickerStatTo_ValueChanged);
             // 
             // label5
             // 
@@ -164,6 +179,8 @@
             // 
             // groupBoxReserve
             // 
+            this.groupBoxReserve.Controls.Add(this.label7);
+            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateTo);
             this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
             this.groupBoxReserve.Controls.Add(this.label4);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
@@ -171,16 +188,34 @@
             this.groupBoxReserve.Controls.Add(this.textBoxEmail);
             this.groupBoxReserve.Controls.Add(this.label2);
             this.groupBoxReserve.Controls.Add(this.label1);
-            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDate);
+            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateFrom);
             this.groupBoxReserve.Controls.Add(this.buttonReserve);
             this.groupBoxReserve.Controls.Add(this.labelName);
             this.groupBoxReserve.Controls.Add(this.textBoxReserveName);
             this.groupBoxReserve.Location = new System.Drawing.Point(1001, 6);
             this.groupBoxReserve.Name = "groupBoxReserve";
-            this.groupBoxReserve.Size = new System.Drawing.Size(199, 283);
+            this.groupBoxReserve.Size = new System.Drawing.Size(199, 337);
             this.groupBoxReserve.TabIndex = 8;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 261);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 15);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Indulás dátuma";
+            // 
+            // dateTimePickerReserveDateTo
+            // 
+            this.dateTimePickerReserveDateTo.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerReserveDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReserveDateTo.Location = new System.Drawing.Point(6, 279);
+            this.dateTimePickerReserveDateTo.Name = "dateTimePickerReserveDateTo";
+            this.dateTimePickerReserveDateTo.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveDateTo.TabIndex = 15;
             // 
             // numericUpDownBed
             // 
@@ -255,18 +290,19 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Érkezés dátuma";
             // 
-            // dateTimePickerReserveDate
+            // dateTimePickerReserveDateFrom
             // 
-            this.dateTimePickerReserveDate.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePickerReserveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerReserveDate.Location = new System.Drawing.Point(6, 225);
-            this.dateTimePickerReserveDate.Name = "dateTimePickerReserveDate";
-            this.dateTimePickerReserveDate.Size = new System.Drawing.Size(184, 23);
-            this.dateTimePickerReserveDate.TabIndex = 4;
+            this.dateTimePickerReserveDateFrom.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerReserveDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReserveDateFrom.Location = new System.Drawing.Point(6, 225);
+            this.dateTimePickerReserveDateFrom.Name = "dateTimePickerReserveDateFrom";
+            this.dateTimePickerReserveDateFrom.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveDateFrom.TabIndex = 4;
+            this.dateTimePickerReserveDateFrom.ValueChanged += new System.EventHandler(this.dateTimePickerReserveDateFrom_ValueChanged);
             // 
             // buttonReserve
             // 
-            this.buttonReserve.Location = new System.Drawing.Point(115, 254);
+            this.buttonReserve.Location = new System.Drawing.Point(118, 308);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(75, 23);
             this.buttonReserve.TabIndex = 5;
@@ -295,7 +331,7 @@
             this.groupBoxReserveDelete.Controls.Add(this.buttonDelete);
             this.groupBoxReserveDelete.Controls.Add(this.labelId);
             this.groupBoxReserveDelete.Controls.Add(this.textBoxId);
-            this.groupBoxReserveDelete.Location = new System.Drawing.Point(1001, 302);
+            this.groupBoxReserveDelete.Location = new System.Drawing.Point(3, 295);
             this.groupBoxReserveDelete.Name = "groupBoxReserveDelete";
             this.groupBoxReserveDelete.Size = new System.Drawing.Size(199, 90);
             this.groupBoxReserveDelete.TabIndex = 6;
@@ -431,18 +467,6 @@
             this.tabControlAdmin.Size = new System.Drawing.Size(1214, 426);
             this.tabControlAdmin.TabIndex = 0;
             // 
-            // plotViewStat
-            // 
-            this.plotViewStat.Location = new System.Drawing.Point(193, 6);
-            this.plotViewStat.Name = "plotViewStat";
-            this.plotViewStat.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotViewStat.Size = new System.Drawing.Size(1007, 385);
-            this.plotViewStat.TabIndex = 16;
-            this.plotViewStat.Text = "plotView1";
-            this.plotViewStat.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
-            this.plotViewStat.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.plotViewStat.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -483,7 +507,7 @@
         private TextBox textBoxEmail;
         private Label label2;
         private Label label1;
-        private DateTimePicker dateTimePickerReserveDate;
+        private DateTimePicker dateTimePickerReserveDateFrom;
         private Button buttonReserve;
         private Label labelName;
         private TextBox textBoxReserveName;
@@ -509,5 +533,7 @@
         private Label label5;
         private DateTimePicker dateTimePickerStatFrom;
         private OxyPlot.WindowsForms.PlotView plotViewStat;
+        private Label label7;
+        private DateTimePicker dateTimePickerReserveDateTo;
     }
 }

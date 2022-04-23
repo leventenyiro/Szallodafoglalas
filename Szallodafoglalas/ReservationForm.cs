@@ -24,7 +24,8 @@ namespace Szallodafoglalas
 
             var hotelName = hotelDb.Hotels.Where(x => x.Id == reservation.HotelId).Select(x => x.Name).First();
             labelReservationDetails.Text = $"{reservation.Id} - {hotelName}, ágyak száma: {reservation.Bed}\n" +
-                $"{reservation.Date} - {reservation.Name}\n{reservation.Email}, {reservation.Tel}";
+                $"{reservation.FromDate.ToString("yyyy.MM.dd")} - {reservation.ToDate.ToString("yyyy.MM.dd")}\n" +
+                $"{reservation.Name}\n{reservation.Email}, {reservation.Tel}";
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace Szallodafoglalas
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (DateTime.Now.AddDays(1) < reservation.Date)
+            if (DateTime.Now.AddDays(1) < reservation.FromDate)
             {
                 hotelDb.Reservations.Remove(reservation);
                 hotelDb.SaveChanges();

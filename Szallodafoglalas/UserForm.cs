@@ -21,11 +21,7 @@ namespace Szallodafoglalas
             InitializeComponent();
             hotelDb = new HotelDb();
             RefreshListBoxHotel();
-            dateTimePickerReserveDate.MinDate = DateTime.Now.AddDays(1);
-            /* hotelek listája - választásnál foglalás (ha lehet)
-             * sikeres foglalás - messagebox az azonosítóval
-             *  ezzel tudja megtekinteni a részleteket, illetve törölni 24 órával előtte
-             */
+            dateTimePickerReserveDateFrom.MinDate = DateTime.Now.AddDays(1);
         }
 
         private void RefreshListBoxHotel()
@@ -51,7 +47,7 @@ namespace Szallodafoglalas
             else
             {
                 var freeRoomInHotel = hotelDb.Reservations
-                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.Date == dateTimePickerReserveDate.Value).Count();
+                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.FromDate >= dateTimePickerReserveDateFrom.Value && x.ToDate <= dateTimePickerReserveDateTo.Value).Count();
 
                 var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id)
                     .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
@@ -60,7 +56,7 @@ namespace Szallodafoglalas
                 else
                 {
                     var reservation = new Reservation(hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id,
-                        (int)numericUpDownBed.Value, textBoxName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDate.Value);
+                        (int)numericUpDownBed.Value, textBoxName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDateFrom.Value, dateTimePickerReserveDateTo.Value);
                     hotelDb.Reservations.Add(reservation);
                     hotelDb.SaveChanges();
                     numericUpDownBed.Value = 1;
@@ -90,6 +86,13 @@ namespace Szallodafoglalas
                     MessageBox.Show("Nem létezik ilyen azonosítóval foglalás!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+        }
+
+        private void dateTimePickerReserveDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            dateTimePickerReserveDateTo.MinDate = dateTimePickerReserveDateFrom.Value;
+            if (dateTimePickerReserveDateTo.Value < dateTimePickerReserveDateFrom.Value)
+                dateTimePickerReserveDateTo.Value = dateTimePickerReserveDateFrom.Value;
         }
     }
 }
