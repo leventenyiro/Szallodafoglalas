@@ -113,14 +113,16 @@ namespace Szallodafoglalas
                     MessageBox.Show("Nincs szabad hely a megadott paraméterekkel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
-                    hotelDb.Reservations.Add(new Reservation(hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id,
-                        (int)numericUpDownBed.Value, textBoxReserveName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDate.Value));
+                    var reservation = new Reservation(hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id, (int)numericUpDownBed.Value,
+                        textBoxReserveName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDate.Value);
+                    hotelDb.Reservations.Add(reservation);
                     hotelDb.SaveChanges();
                     numericUpDownBed.Value = 1;
                     textBoxReserveName.Text = "";
                     textBoxEmail.Text = "";
                     textBoxTel.Text = "";
                     RefreshListBoxReservation();
+                    MessageBox.Show($"Sikeres foglalás! Azonosító: {reservation.Id}", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
