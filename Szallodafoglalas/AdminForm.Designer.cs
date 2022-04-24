@@ -141,7 +141,6 @@
             this.dateTimePickerStatTo.Name = "dateTimePickerStatTo";
             this.dateTimePickerStatTo.Size = new System.Drawing.Size(184, 23);
             this.dateTimePickerStatTo.TabIndex = 12;
-            this.dateTimePickerStatTo.ValueChanged += new System.EventHandler(this.dateTimePickerStatTo_ValueChanged);
             // 
             // label5
             // 

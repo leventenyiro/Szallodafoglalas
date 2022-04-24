@@ -47,7 +47,9 @@ namespace Szallodafoglalas
             else
             {
                 var freeRoomInHotel = hotelDb.Reservations
-                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.FromDate >= dateTimePickerReserveDateFrom.Value && x.ToDate <= dateTimePickerReserveDateTo.Value).Count();
+                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id &&
+                        !(dateTimePickerReserveDateFrom.Value < x.ToDate || x.FromDate < dateTimePickerReserveDateTo.Value ||
+                        (x.FromDate <= dateTimePickerReserveDateFrom.Value && dateTimePickerReserveDateTo.Value <= x.ToDate))).Count();
 
                 var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id)
                     .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
@@ -78,8 +80,8 @@ namespace Szallodafoglalas
                 {
                     var reservation = hotelDb.Reservations.Where(x => x.Id == textBoxId.Text).First();
                     new ReservationForm(reservation).ShowDialog();
-                    //hotelDb.Reservations.Remove((Reservation)reservation);
-                    //hotelDb.SaveChanges();
+                    hotelDb.Reservations.Remove((Reservation)reservation);
+                    hotelDb.SaveChanges();
                 }
                 catch (Exception)
                 {

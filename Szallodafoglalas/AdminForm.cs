@@ -106,7 +106,8 @@ namespace Szallodafoglalas
             {
                 var freeRoomInHotel = hotelDb.Reservations
                     .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id &&
-                        x.FromDate <= dateTimePickerReserveDateFrom.Value && (x.ToDate >= dateTimePickerReserveDateTo.Value || )).Count();
+                        !(dateTimePickerReserveDateFrom.Value < x.ToDate || x.FromDate < dateTimePickerReserveDateTo.Value ||
+                        (x.FromDate <= dateTimePickerReserveDateFrom.Value && dateTimePickerReserveDateTo.Value <= x.ToDate))).Count();
 
                 var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id)
                     .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
@@ -157,12 +158,13 @@ namespace Szallodafoglalas
                 var days = (dateTimePickerStatTo.Value.Date - dateTimePickerStatFrom.Value.Date).Days + 1;
                 var selectedHotel = hotelDb.Hotels.ToList()[comboBoxStatHotel.SelectedIndex];
                 int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days);
-                /*int reserved = hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id &&
-                    x.FromDate >= dateTimePickerStatFrom.Value &&
-                    x.FromDate <= dateTimePickerStatTo.Value &&
-                    x.ToDate <= dateTimePickerStatTo.Value).Count();*/
+
                 int reserved = 0;
-                // végigmegyünk a dátumokon - ezt kell megcsinálni
+                var dateIterator = dateTimePickerStatFrom.Value.Date;
+                while(dateIterator != dateTimePickerStatTo.Value.Date)
+                {
+                    reserved += hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id && x.FromDate <= dateIterator && x.ToDate >= dateIterator).Count();
+                }
 
                 var model = new PlotModel { Title = $"{selectedHotel.Name}: Foglalások aránya {dateTimePickerStatFrom.Value.ToString("yyyy.MM.dd")} és {dateTimePickerStatTo.Value.ToString("yyyy.MM.dd")} között" };
                 dynamic seriesPlot = new PieSeries { StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
