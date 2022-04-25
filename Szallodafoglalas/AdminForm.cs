@@ -15,7 +15,7 @@ namespace Szallodafoglalas
             InitializeComponent();
             hotelDb = new HotelDb();
             RefreshListBoxHotel();
-            dateTimePickerReserveDateFrom.MinDate = DateTime.Now.AddDays(1);
+            dateTimePickerReserveDateFrom.MinDate = DateTime.Now;
             RefreshComboBoxStatHotel();
             dateTimePickerStatFrom.Value = DateTime.Now;
         }
@@ -128,6 +128,8 @@ namespace Szallodafoglalas
                     textBoxReserveName.Text = "";
                     textBoxEmail.Text = "";
                     textBoxTel.Text = "";
+                    dateTimePickerReserveDateFrom.Value = DateTime.Now;
+                    dateTimePickerReserveDateTo.Value = dateTimePickerReserveDateFrom.Value.AddDays(1);
                     RefreshListBoxReservation();
                     MessageBox.Show($"Sikeres foglalás! Azonosító: {reservation.Id}", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

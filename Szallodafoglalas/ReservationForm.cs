@@ -39,6 +39,7 @@ namespace Szallodafoglalas
             {
                 hotelDb.Reservations.Remove(reservation);
                 hotelDb.SaveChanges();
+                MessageBox.Show("Sikeres törlés!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
             else
