@@ -12,9 +12,10 @@ namespace Szallodafoglalas.Models
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Tel { get; set; } = null!;
-        public DateTime Date { get; set; }
+        public DateTime FromDate { get; set; }
+        public DateTime ToDate { get; set; }
 
-        public Reservation(string hotelId, int bed, string name, string email, string tel, DateTime date)
+        public Reservation(string hotelId, int bed, string name, string email, string tel, DateTime fromDate, DateTime toDate)
         {
             Id = IdGenerator.generate(6);
             HotelId = hotelId;
@@ -22,7 +23,8 @@ namespace Szallodafoglalas.Models
             Name = name;
             Email = email;
             Tel = tel;
-            Date = date;
+            FromDate = fromDate;
+            ToDate = toDate;
         }
     }
 }

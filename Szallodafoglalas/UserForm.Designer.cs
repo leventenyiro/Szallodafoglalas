@@ -34,6 +34,8 @@
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.listBoxHotel = new System.Windows.Forms.ListBox();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePickerReserveDateTo = new System.Windows.Forms.DateTimePicker();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
@@ -41,7 +43,7 @@
             this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePickerReserveDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerReserveDateFrom = new System.Windows.Forms.DateTimePicker();
             this.buttonReserve = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -55,7 +57,7 @@
             this.groupBoxReserveDelete.Controls.Add(this.buttonDetails);
             this.groupBoxReserveDelete.Controls.Add(this.labelId);
             this.groupBoxReserveDelete.Controls.Add(this.textBoxId);
-            this.groupBoxReserveDelete.Location = new System.Drawing.Point(12, 301);
+            this.groupBoxReserveDelete.Location = new System.Drawing.Point(12, 353);
             this.groupBoxReserveDelete.Name = "groupBoxReserveDelete";
             this.groupBoxReserveDelete.Size = new System.Drawing.Size(199, 90);
             this.groupBoxReserveDelete.TabIndex = 10;
@@ -94,11 +96,13 @@
             this.listBoxHotel.ItemHeight = 15;
             this.listBoxHotel.Location = new System.Drawing.Point(226, 21);
             this.listBoxHotel.Name = "listBoxHotel";
-            this.listBoxHotel.Size = new System.Drawing.Size(562, 364);
+            this.listBoxHotel.Size = new System.Drawing.Size(562, 424);
             this.listBoxHotel.TabIndex = 8;
             // 
             // groupBoxReserve
             // 
+            this.groupBoxReserve.Controls.Add(this.label5);
+            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateTo);
             this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
             this.groupBoxReserve.Controls.Add(this.label4);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
@@ -106,16 +110,34 @@
             this.groupBoxReserve.Controls.Add(this.textBoxEmail);
             this.groupBoxReserve.Controls.Add(this.label2);
             this.groupBoxReserve.Controls.Add(this.label1);
-            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDate);
+            this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateFrom);
             this.groupBoxReserve.Controls.Add(this.buttonReserve);
             this.groupBoxReserve.Controls.Add(this.labelName);
             this.groupBoxReserve.Controls.Add(this.textBoxName);
             this.groupBoxReserve.Location = new System.Drawing.Point(12, 12);
             this.groupBoxReserve.Name = "groupBoxReserve";
-            this.groupBoxReserve.Size = new System.Drawing.Size(199, 283);
+            this.groupBoxReserve.Size = new System.Drawing.Size(199, 335);
             this.groupBoxReserve.TabIndex = 9;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 260);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 15);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Indulás dátuma";
+            // 
+            // dateTimePickerReserveDateTo
+            // 
+            this.dateTimePickerReserveDateTo.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerReserveDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReserveDateTo.Location = new System.Drawing.Point(6, 278);
+            this.dateTimePickerReserveDateTo.Name = "dateTimePickerReserveDateTo";
+            this.dateTimePickerReserveDateTo.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveDateTo.TabIndex = 15;
             // 
             // numericUpDownBed
             // 
@@ -190,18 +212,19 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Érkezés dátuma";
             // 
-            // dateTimePickerReserveDate
+            // dateTimePickerReserveDateFrom
             // 
-            this.dateTimePickerReserveDate.CustomFormat = "yyyy-MM-dd";
-            this.dateTimePickerReserveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerReserveDate.Location = new System.Drawing.Point(6, 225);
-            this.dateTimePickerReserveDate.Name = "dateTimePickerReserveDate";
-            this.dateTimePickerReserveDate.Size = new System.Drawing.Size(184, 23);
-            this.dateTimePickerReserveDate.TabIndex = 4;
+            this.dateTimePickerReserveDateFrom.CustomFormat = "yyyy-MM-dd";
+            this.dateTimePickerReserveDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerReserveDateFrom.Location = new System.Drawing.Point(6, 225);
+            this.dateTimePickerReserveDateFrom.Name = "dateTimePickerReserveDateFrom";
+            this.dateTimePickerReserveDateFrom.Size = new System.Drawing.Size(184, 23);
+            this.dateTimePickerReserveDateFrom.TabIndex = 4;
+            this.dateTimePickerReserveDateFrom.ValueChanged += new System.EventHandler(this.dateTimePickerReserveDateFrom_ValueChanged);
             // 
             // buttonReserve
             // 
-            this.buttonReserve.Location = new System.Drawing.Point(115, 254);
+            this.buttonReserve.Location = new System.Drawing.Point(115, 306);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(75, 23);
             this.buttonReserve.TabIndex = 5;
@@ -229,7 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 400);
+            this.ClientSize = new System.Drawing.Size(800, 452);
             this.Controls.Add(this.groupBoxReserve);
             this.Controls.Add(this.groupBoxReserveDelete);
             this.Controls.Add(this.listBoxHotel);
@@ -262,9 +285,11 @@
         private TextBox textBoxEmail;
         private Label label2;
         private Label label1;
-        private DateTimePicker dateTimePickerReserveDate;
+        private DateTimePicker dateTimePickerReserveDateFrom;
         private Button buttonReserve;
         private Label labelName;
         private TextBox textBoxName;
+        private Label label5;
+        private DateTimePicker dateTimePickerReserveDateTo;
     }
 }

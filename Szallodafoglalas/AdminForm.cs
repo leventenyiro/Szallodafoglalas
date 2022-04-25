@@ -15,10 +15,9 @@ namespace Szallodafoglalas
             InitializeComponent();
             hotelDb = new HotelDb();
             RefreshListBoxHotel();
-            dateTimePickerReserveDate.MinDate = DateTime.Now.AddDays(1);
+            dateTimePickerReserveDateFrom.MinDate = DateTime.Now;
             RefreshComboBoxStatHotel();
             dateTimePickerStatFrom.Value = DateTime.Now;
-            dateTimePickerStatTo.Value = DateTime.Now;
         }
 
         private void RefreshListBoxHotel()
@@ -33,20 +32,21 @@ namespace Szallodafoglalas
 
         private void RefreshListBoxReservation()
         {
-            var reservationInHotel = hotelDb.Reservations
-                .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxHotel.SelectedIndex].Id).OrderBy(x => x.Date);
-            var hotelName = hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Name;
-
             listBoxReservation.Items.Clear();
+
+            var reservationInHotel = hotelDb.Reservations
+            .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxHotel.SelectedIndex].Id).OrderBy(x => x.FromDate);
+                    var hotelName = hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Name;
 
             foreach (var item in reservationInHotel)
             {
-                listBoxReservation.Items.Add($"{item.Id} - {hotelName}({item.Bed}) ({item.Date.ToString("yyyy-MM-dd")}) - ({item.Name} - {item.Email} - {item.Tel}");
+                listBoxReservation.Items.Add($"{item.Id} - {hotelName}({item.Bed}) ({item.FromDate.ToString("yyyy-MM-dd")} - {item.ToDate.ToString("yyyy-MM-dd")}) - ({item.Name} - {item.Email} - {item.Tel}");
             }
         }
 
         private void RefreshComboBoxStatHotel()
         {
+            comboBoxStatHotel.Items.Clear();
             foreach (var item in hotelDb.Hotels)
             {
                 comboBoxStatHotel.Items.Add(item.Name);
@@ -104,23 +104,33 @@ namespace Szallodafoglalas
                 MessageBox.Show("Helytelen telefonszám!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                var freeRoomInHotel = hotelDb.Reservations
-                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.Date == dateTimePickerReserveDate.Value).Count();
-
                 var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id)
                     .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
-                if (freeRoomInHotel == roomInHotel)
+
+                bool isFree = true;
+                var dateIterator = dateTimePickerReserveDateFrom.Value.Date;
+                while (dateIterator != dateTimePickerReserveDateTo.Value.Date && isFree)
+                {
+                    int reserved = hotelDb.Reservations.Where(x => x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.Bed == numericUpDownBed.Value && x.FromDate <= dateIterator && x.ToDate > dateIterator).Count();
+                    if (reserved == roomInHotel)
+                        isFree = false;
+                    dateIterator = dateIterator.AddDays(1);
+                }
+
+                if (!isFree)
                     MessageBox.Show("Nincs szabad hely a megadott paraméterekkel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
                     var reservation = new Reservation(hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id, (int)numericUpDownBed.Value,
-                        textBoxReserveName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDate.Value);
+                        textBoxReserveName.Text, textBoxEmail.Text, textBoxTel.Text, dateTimePickerReserveDateFrom.Value, dateTimePickerReserveDateTo.Value);
                     hotelDb.Reservations.Add(reservation);
                     hotelDb.SaveChanges();
                     numericUpDownBed.Value = 1;
                     textBoxReserveName.Text = "";
                     textBoxEmail.Text = "";
                     textBoxTel.Text = "";
+                    dateTimePickerReserveDateFrom.Value = DateTime.Now;
+                    dateTimePickerReserveDateTo.Value = dateTimePickerReserveDateFrom.Value.AddDays(1);
                     RefreshListBoxReservation();
                     MessageBox.Show($"Sikeres foglalás! Azonosító: {reservation.Id}", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -139,6 +149,8 @@ namespace Szallodafoglalas
                     hotelDb.Reservations.Remove((Reservation)reservation);
                     hotelDb.SaveChanges();
                     RefreshListBoxReservation();
+                    textBoxId.Text = "";
+                    MessageBox.Show("Sikeres törlés!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception)
                 {
@@ -155,8 +167,15 @@ namespace Szallodafoglalas
             {
                 var days = (dateTimePickerStatTo.Value.Date - dateTimePickerStatFrom.Value.Date).Days + 1;
                 var selectedHotel = hotelDb.Hotels.ToList()[comboBoxStatHotel.SelectedIndex];
-                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days);
-                int reserved = hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id && x.Date >= dateTimePickerStatFrom.Value && x.Date <= dateTimePickerStatTo.Value).Count();
+                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days - 1);
+
+                int reserved = 0;
+                var dateIterator = dateTimePickerStatFrom.Value.Date;
+                while(dateIterator != dateTimePickerStatTo.Value.Date)
+                {
+                    reserved += hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id && x.FromDate <= dateIterator && x.ToDate > dateIterator).Count();
+                    dateIterator = dateIterator.AddDays(1);
+                }
 
                 var model = new PlotModel { Title = $"{selectedHotel.Name}: Foglalások aránya {dateTimePickerStatFrom.Value.ToString("yyyy.MM.dd")} és {dateTimePickerStatTo.Value.ToString("yyyy.MM.dd")} között" };
                 dynamic seriesPlot = new PieSeries { StrokeThickness = 2.0, InsideLabelPosition = 0.8, AngleSpan = 360, StartAngle = 0 };
@@ -169,9 +188,19 @@ namespace Szallodafoglalas
 
         private void dateTimePickerStatFrom_ValueChanged(object sender, EventArgs e)
         {
-            dateTimePickerStatTo.MinDate = dateTimePickerStatFrom.Value;
-            if (dateTimePickerStatTo.Value < dateTimePickerStatFrom.Value)
-                dateTimePickerStatTo.Value = dateTimePickerStatFrom.Value;
+            fromToDateSet(dateTimePickerStatFrom, dateTimePickerStatTo);
+        }
+
+        private void dateTimePickerReserveDateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            fromToDateSet(dateTimePickerReserveDateFrom, dateTimePickerReserveDateTo);
+        }
+
+        private void fromToDateSet(DateTimePicker dateFrom, DateTimePicker dateTo)
+        {
+            dateTo.MinDate = dateFrom.Value.AddDays(1);
+            if (dateTo.Value < dateFrom.Value)
+                dateTo.Value = dateFrom.Value;
         }
     }
 }
