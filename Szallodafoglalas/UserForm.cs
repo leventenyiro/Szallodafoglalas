@@ -30,7 +30,16 @@ namespace Szallodafoglalas
 
             foreach (var item in hotelDb.Hotels)
             {
-                listBoxHotel.Items.Add(item.ToString());
+                string strHotel = $"{item.Name}: ";
+                if (item.OneBed != 0 && item.TwoBed == 0)
+                    strHotel += "egy";
+                else if (item.OneBed == 0 && item.TwoBed != 0)
+                    strHotel += "két";
+                else
+                    strHotel += "egy- és két";
+                strHotel += "ágyas";
+                strHotel += (item.OneBed + item.TwoBed) == 1 ? " szoba" : " szobák";
+                listBoxHotel.Items.Add(strHotel);
             }
         }
 
