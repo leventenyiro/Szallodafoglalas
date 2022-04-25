@@ -1,4 +1,4 @@
-using System.Xml;
+using System.Configuration;
 
 namespace Szallodafoglalas
 {
@@ -10,23 +10,17 @@ namespace Szallodafoglalas
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load("configuration.xml");
-            var node = doc.SelectSingleNode("mode");
-            string mode = node != null ? node.InnerText : "";
-
+            var mode = ConfigurationManager.AppSettings.Get("Mode");
             Form? form = null;
-            if (mode == "admin")
+            if (mode == "Admin")
                 form = new AdminForm();
-            else if (mode == "user")
+            else if (mode == "User")
                 form = new UserForm();
 
             if (form == null)
-                MessageBox.Show("Nincs mód meghatározva a configuration.xml fájlban!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nincs vagy helytelen mód (Admin vagy User) az App.config fájlban!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
                 Application.Run(form);
         }
