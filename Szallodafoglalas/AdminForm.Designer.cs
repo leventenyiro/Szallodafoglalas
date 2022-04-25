@@ -89,7 +89,7 @@
             this.tabPageStat.Location = new System.Drawing.Point(4, 24);
             this.tabPageStat.Name = "tabPageStat";
             this.tabPageStat.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStat.Size = new System.Drawing.Size(1206, 398);
+            this.tabPageStat.Size = new System.Drawing.Size(1357, 398);
             this.tabPageStat.TabIndex = 2;
             this.tabPageStat.Text = "Statisztika";
             this.tabPageStat.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             this.plotViewStat.Location = new System.Drawing.Point(193, 6);
             this.plotViewStat.Name = "plotViewStat";
             this.plotViewStat.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.plotViewStat.Size = new System.Drawing.Size(1007, 385);
+            this.plotViewStat.Size = new System.Drawing.Size(1157, 385);
             this.plotViewStat.TabIndex = 16;
             this.plotViewStat.Text = "plotView1";
             this.plotViewStat.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
@@ -171,7 +171,7 @@
             this.tabPageHotel.Location = new System.Drawing.Point(4, 24);
             this.tabPageHotel.Name = "tabPageHotel";
             this.tabPageHotel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageHotel.Size = new System.Drawing.Size(1206, 398);
+            this.tabPageHotel.Size = new System.Drawing.Size(1357, 398);
             this.tabPageHotel.TabIndex = 1;
             this.tabPageHotel.Text = "Hotelek";
             this.tabPageHotel.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             this.groupBoxReserve.Controls.Add(this.buttonReserve);
             this.groupBoxReserve.Controls.Add(this.labelName);
             this.groupBoxReserve.Controls.Add(this.textBoxReserveName);
-            this.groupBoxReserve.Location = new System.Drawing.Point(1001, 6);
+            this.groupBoxReserve.Location = new System.Drawing.Point(1155, 3);
             this.groupBoxReserve.Name = "groupBoxReserve";
             this.groupBoxReserve.Size = new System.Drawing.Size(199, 337);
             this.groupBoxReserve.TabIndex = 8;
@@ -443,7 +443,7 @@
             this.listBoxReservation.ItemHeight = 15;
             this.listBoxReservation.Location = new System.Drawing.Point(522, 6);
             this.listBoxReservation.Name = "listBoxReservation";
-            this.listBoxReservation.Size = new System.Drawing.Size(473, 379);
+            this.listBoxReservation.Size = new System.Drawing.Size(627, 379);
             this.listBoxReservation.TabIndex = 5;
             // 
             // listBoxHotel
@@ -463,14 +463,14 @@
             this.tabControlAdmin.Location = new System.Drawing.Point(12, 12);
             this.tabControlAdmin.Name = "tabControlAdmin";
             this.tabControlAdmin.SelectedIndex = 0;
-            this.tabControlAdmin.Size = new System.Drawing.Size(1214, 426);
+            this.tabControlAdmin.Size = new System.Drawing.Size(1365, 426);
             this.tabControlAdmin.TabIndex = 0;
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 439);
+            this.ClientSize = new System.Drawing.Size(1378, 439);
             this.Controls.Add(this.tabControlAdmin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;

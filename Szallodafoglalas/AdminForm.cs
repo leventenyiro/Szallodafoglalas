@@ -18,7 +18,6 @@ namespace Szallodafoglalas
             dateTimePickerReserveDateFrom.MinDate = DateTime.Now.AddDays(1);
             RefreshComboBoxStatHotel();
             dateTimePickerStatFrom.Value = DateTime.Now;
-            dateTimePickerStatTo.Value = DateTime.Now;
         }
 
         private void RefreshListBoxHotel()
@@ -104,14 +103,20 @@ namespace Szallodafoglalas
                 MessageBox.Show("Helytelen telefonszám!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
-                var freeRoomInHotel = hotelDb.Reservations
-                    .Where(x => x.Bed == numericUpDownBed.Value && x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id &&
-                        !(dateTimePickerReserveDateFrom.Value < x.ToDate || x.FromDate < dateTimePickerReserveDateTo.Value ||
-                        (x.FromDate <= dateTimePickerReserveDateFrom.Value && dateTimePickerReserveDateTo.Value <= x.ToDate))).Count();
-
                 var roomInHotel = hotelDb.Hotels.Where(x => x.Id == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id)
                     .Select(x => numericUpDownBed.Value == 1 ? x.OneBed : x.TwoBed).First();
-                if (freeRoomInHotel == roomInHotel)
+
+                bool isFree = true;
+                var dateIterator = dateTimePickerReserveDateFrom.Value.Date;
+                while (dateIterator != dateTimePickerReserveDateTo.Value.Date && isFree)
+                {
+                    int reserved = hotelDb.Reservations.Where(x => x.HotelId == hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Id && x.Bed == numericUpDownBed.Value && x.FromDate <= dateIterator && x.ToDate > dateIterator).Count();
+                    if (reserved == roomInHotel)
+                        isFree = false;
+                    dateIterator = dateIterator.AddDays(1);
+                }
+
+                if (!isFree)
                     MessageBox.Show("Nincs szabad hely a megadott paraméterekkel!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 else
                 {
@@ -141,6 +146,8 @@ namespace Szallodafoglalas
                     hotelDb.Reservations.Remove((Reservation)reservation);
                     hotelDb.SaveChanges();
                     RefreshListBoxReservation();
+                    textBoxId.Text = "";
+                    MessageBox.Show("Sikeres törlés!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception)
                 {
@@ -157,13 +164,14 @@ namespace Szallodafoglalas
             {
                 var days = (dateTimePickerStatTo.Value.Date - dateTimePickerStatFrom.Value.Date).Days + 1;
                 var selectedHotel = hotelDb.Hotels.ToList()[comboBoxStatHotel.SelectedIndex];
-                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days);
+                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days - 1);
 
                 int reserved = 0;
                 var dateIterator = dateTimePickerStatFrom.Value.Date;
                 while(dateIterator != dateTimePickerStatTo.Value.Date)
                 {
-                    reserved += hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id && x.FromDate <= dateIterator && x.ToDate >= dateIterator).Count();
+                    reserved += hotelDb.Reservations.Where(x => x.HotelId == selectedHotel.Id && x.FromDate <= dateIterator && x.ToDate > dateIterator).Count();
+                    dateIterator = dateIterator.AddDays(1);
                 }
 
                 var model = new PlotModel { Title = $"{selectedHotel.Name}: Foglalások aránya {dateTimePickerStatFrom.Value.ToString("yyyy.MM.dd")} és {dateTimePickerStatTo.Value.ToString("yyyy.MM.dd")} között" };
@@ -187,7 +195,7 @@ namespace Szallodafoglalas
 
         private void fromToDateSet(DateTimePicker dateFrom, DateTimePicker dateTo)
         {
-            dateTo.MinDate = dateFrom.Value;
+            dateTo.MinDate = dateFrom.Value.AddDays(1);
             if (dateTo.Value < dateFrom.Value)
                 dateTo.Value = dateFrom.Value;
         }
