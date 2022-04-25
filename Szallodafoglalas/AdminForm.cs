@@ -32,11 +32,11 @@ namespace Szallodafoglalas
 
         private void RefreshListBoxReservation()
         {
-            var reservationInHotel = hotelDb.Reservations
-                .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxHotel.SelectedIndex].Id).OrderBy(x => x.FromDate);
-            var hotelName = hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Name;
-
             listBoxReservation.Items.Clear();
+
+            var reservationInHotel = hotelDb.Reservations
+            .Where(x => x.HotelId == hotelDb.Hotels.ToArray()[listBoxHotel.SelectedIndex].Id).OrderBy(x => x.FromDate);
+                    var hotelName = hotelDb.Hotels.ToList()[listBoxHotel.SelectedIndex].Name;
 
             foreach (var item in reservationInHotel)
             {
@@ -46,6 +46,7 @@ namespace Szallodafoglalas
 
         private void RefreshComboBoxStatHotel()
         {
+            comboBoxStatHotel.Items.Clear();
             foreach (var item in hotelDb.Hotels)
             {
                 comboBoxStatHotel.Items.Add(item.Name);
