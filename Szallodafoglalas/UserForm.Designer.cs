@@ -128,7 +128,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 15);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Indulás dátuma";
+            this.label5.Text = "Távozás dátuma";
             // 
             // dateTimePickerReserveDateTo
             // 
