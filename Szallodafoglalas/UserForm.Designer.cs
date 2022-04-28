@@ -34,15 +34,15 @@
             this.textBoxId = new System.Windows.Forms.TextBox();
             this.listBoxHotel = new System.Windows.Forms.ListBox();
             this.groupBoxReserve = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.labelTo = new System.Windows.Forms.Label();
             this.dateTimePickerReserveDateTo = new System.Windows.Forms.DateTimePicker();
             this.numericUpDownBed = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelBed = new System.Windows.Forms.Label();
             this.textBoxTel = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.labelTel = new System.Windows.Forms.Label();
             this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.labelFrom = new System.Windows.Forms.Label();
             this.dateTimePickerReserveDateFrom = new System.Windows.Forms.DateTimePicker();
             this.buttonReserve = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.groupBoxReserveDelete.Location = new System.Drawing.Point(12, 353);
             this.groupBoxReserveDelete.Name = "groupBoxReserveDelete";
             this.groupBoxReserveDelete.Size = new System.Drawing.Size(199, 90);
-            this.groupBoxReserveDelete.TabIndex = 10;
+            this.groupBoxReserveDelete.TabIndex = 1;
             this.groupBoxReserveDelete.TabStop = false;
             this.groupBoxReserveDelete.Text = "Foglalás törlése";
             // 
@@ -97,19 +97,19 @@
             this.listBoxHotel.Location = new System.Drawing.Point(226, 21);
             this.listBoxHotel.Name = "listBoxHotel";
             this.listBoxHotel.Size = new System.Drawing.Size(562, 424);
-            this.listBoxHotel.TabIndex = 8;
+            this.listBoxHotel.TabIndex = 3;
             // 
             // groupBoxReserve
             // 
-            this.groupBoxReserve.Controls.Add(this.label5);
+            this.groupBoxReserve.Controls.Add(this.labelTo);
             this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateTo);
             this.groupBoxReserve.Controls.Add(this.numericUpDownBed);
-            this.groupBoxReserve.Controls.Add(this.label4);
+            this.groupBoxReserve.Controls.Add(this.labelBed);
             this.groupBoxReserve.Controls.Add(this.textBoxTel);
-            this.groupBoxReserve.Controls.Add(this.label3);
+            this.groupBoxReserve.Controls.Add(this.labelTel);
             this.groupBoxReserve.Controls.Add(this.textBoxEmail);
-            this.groupBoxReserve.Controls.Add(this.label2);
-            this.groupBoxReserve.Controls.Add(this.label1);
+            this.groupBoxReserve.Controls.Add(this.labelEmail);
+            this.groupBoxReserve.Controls.Add(this.labelFrom);
             this.groupBoxReserve.Controls.Add(this.dateTimePickerReserveDateFrom);
             this.groupBoxReserve.Controls.Add(this.buttonReserve);
             this.groupBoxReserve.Controls.Add(this.labelName);
@@ -117,18 +117,18 @@
             this.groupBoxReserve.Location = new System.Drawing.Point(12, 12);
             this.groupBoxReserve.Name = "groupBoxReserve";
             this.groupBoxReserve.Size = new System.Drawing.Size(199, 335);
-            this.groupBoxReserve.TabIndex = 9;
+            this.groupBoxReserve.TabIndex = 0;
             this.groupBoxReserve.TabStop = false;
             this.groupBoxReserve.Text = "Foglalás";
             // 
-            // label5
+            // labelTo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 260);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 15);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Indulás dátuma";
+            this.labelTo.AutoSize = true;
+            this.labelTo.Location = new System.Drawing.Point(9, 260);
+            this.labelTo.Name = "labelTo";
+            this.labelTo.Size = new System.Drawing.Size(89, 15);
+            this.labelTo.TabIndex = 16;
+            this.labelTo.Text = "Indulás dátuma";
             // 
             // dateTimePickerReserveDateTo
             // 
@@ -137,7 +137,7 @@
             this.dateTimePickerReserveDateTo.Location = new System.Drawing.Point(6, 278);
             this.dateTimePickerReserveDateTo.Name = "dateTimePickerReserveDateTo";
             this.dateTimePickerReserveDateTo.Size = new System.Drawing.Size(184, 23);
-            this.dateTimePickerReserveDateTo.TabIndex = 15;
+            this.dateTimePickerReserveDateTo.TabIndex = 5;
             // 
             // numericUpDownBed
             // 
@@ -161,14 +161,14 @@
             0,
             0});
             // 
-            // label4
+            // labelBed
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 15);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Ágyak száma";
+            this.labelBed.AutoSize = true;
+            this.labelBed.Location = new System.Drawing.Point(6, 160);
+            this.labelBed.Name = "labelBed";
+            this.labelBed.Size = new System.Drawing.Size(76, 15);
+            this.labelBed.TabIndex = 14;
+            this.labelBed.Text = "Ágyak száma";
             // 
             // textBoxTel
             // 
@@ -178,14 +178,14 @@
             this.textBoxTel.Size = new System.Drawing.Size(177, 23);
             this.textBoxTel.TabIndex = 2;
             // 
-            // label3
+            // labelTel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 107);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 15);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Telefonszám";
+            this.labelTel.AutoSize = true;
+            this.labelTel.Location = new System.Drawing.Point(6, 107);
+            this.labelTel.Name = "labelTel";
+            this.labelTel.Size = new System.Drawing.Size(72, 15);
+            this.labelTel.TabIndex = 12;
+            this.labelTel.Text = "Telefonszám";
             // 
             // textBoxEmail
             // 
@@ -194,23 +194,23 @@
             this.textBoxEmail.Size = new System.Drawing.Size(177, 23);
             this.textBoxEmail.TabIndex = 1;
             // 
-            // label2
+            // labelEmail
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "E-mail";
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Location = new System.Drawing.Point(6, 63);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(41, 15);
+            this.labelEmail.TabIndex = 10;
+            this.labelEmail.Text = "E-mail";
             // 
-            // label1
+            // labelFrom
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 207);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Érkezés dátuma";
+            this.labelFrom.AutoSize = true;
+            this.labelFrom.Location = new System.Drawing.Point(9, 207);
+            this.labelFrom.Name = "labelFrom";
+            this.labelFrom.Size = new System.Drawing.Size(89, 15);
+            this.labelFrom.TabIndex = 9;
+            this.labelFrom.Text = "Érkezés dátuma";
             // 
             // dateTimePickerReserveDateFrom
             // 
@@ -227,7 +227,7 @@
             this.buttonReserve.Location = new System.Drawing.Point(115, 306);
             this.buttonReserve.Name = "buttonReserve";
             this.buttonReserve.Size = new System.Drawing.Size(75, 23);
-            this.buttonReserve.TabIndex = 5;
+            this.buttonReserve.TabIndex = 6;
             this.buttonReserve.Text = "Foglalás";
             this.buttonReserve.UseVisualStyleBackColor = true;
             this.buttonReserve.Click += new System.EventHandler(this.buttonReserve_Click);
@@ -279,17 +279,17 @@
         private ListBox listBoxHotel;
         private GroupBox groupBoxReserve;
         private NumericUpDown numericUpDownBed;
-        private Label label4;
+        private Label labelBed;
         private TextBox textBoxTel;
-        private Label label3;
+        private Label labelTel;
         private TextBox textBoxEmail;
-        private Label label2;
-        private Label label1;
+        private Label labelEmail;
+        private Label labelFrom;
         private DateTimePicker dateTimePickerReserveDateFrom;
         private Button buttonReserve;
         private Label labelName;
         private TextBox textBoxName;
-        private Label label5;
+        private Label labelTo;
         private DateTimePicker dateTimePickerReserveDateTo;
     }
 }

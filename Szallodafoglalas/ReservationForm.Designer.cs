@@ -40,7 +40,7 @@
             this.labelReservationDetails.Location = new System.Drawing.Point(12, 20);
             this.labelReservationDetails.Name = "labelReservationDetails";
             this.labelReservationDetails.Size = new System.Drawing.Size(128, 15);
-            this.labelReservationDetails.TabIndex = 0;
+            this.labelReservationDetails.TabIndex = 2;
             this.labelReservationDetails.Text = "labelReservationDetails";
             // 
             // buttonBack
@@ -48,7 +48,7 @@
             this.buttonBack.Location = new System.Drawing.Point(55, 155);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(75, 23);
-            this.buttonBack.TabIndex = 1;
+            this.buttonBack.TabIndex = 0;
             this.buttonBack.Text = "Vissza";
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
@@ -58,7 +58,7 @@
             this.buttonDelete.Location = new System.Drawing.Point(226, 155);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelete.TabIndex = 2;
+            this.buttonDelete.TabIndex = 1;
             this.buttonDelete.Text = "Törlés";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);

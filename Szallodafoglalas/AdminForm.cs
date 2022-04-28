@@ -73,7 +73,7 @@ namespace Szallodafoglalas
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Szerverhiba!", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Szerverhiba!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
@@ -167,7 +167,7 @@ namespace Szallodafoglalas
             {
                 var days = (dateTimePickerStatTo.Value.Date - dateTimePickerStatFrom.Value.Date).Days + 1;
                 var selectedHotel = hotelDb.Hotels.ToList()[comboBoxStatHotel.SelectedIndex];
-                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * days - 1);
+                int maxHotel = (int)((selectedHotel.OneBed + selectedHotel.TwoBed) * (days - 1));
 
                 int reserved = 0;
                 var dateIterator = dateTimePickerStatFrom.Value.Date;
