@@ -203,9 +203,9 @@
             this.labelTo.AutoSize = true;
             this.labelTo.Location = new System.Drawing.Point(9, 261);
             this.labelTo.Name = "labelTo";
-            this.labelTo.Size = new System.Drawing.Size(89, 15);
+            this.labelTo.Size = new System.Drawing.Size(91, 15);
             this.labelTo.TabIndex = 16;
-            this.labelTo.Text = "Indulás dátuma";
+            this.labelTo.Text = "Távozás dátuma";
             // 
             // dateTimePickerReserveDateTo
             // 
